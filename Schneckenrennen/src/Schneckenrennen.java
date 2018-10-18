@@ -2,7 +2,9 @@
 public class Schneckenrennen {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Rennschnecke s1 = new Rennschnecke("Hasi", "Glitscho",3);
+		Rennschnecke s2 = new Rennschnecke("Baerchen", "Rasanto",5);
 
 	}
 
