@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Rennschnecke {
 
@@ -13,4 +14,22 @@ public class Rennschnecke {
 		strecke=0;
 	}
 	
+	
+	public void krieche(){
+	
+		Random ran = new Random();
+		strecke = strecke+ran.nextInt(vmax + 1);
+	}
+		
+	
+	public String toString(){
+		return "Name: "+name+"\n"
+				+ "Rasse: "+rasse+"\n"
+				+ "Höchstgeschwindigkeit: "+vmax+"\n"
+				+ "Geschleimte Strecke: "+ strecke;
+	}
+				
+	
+		
+	 
 }
