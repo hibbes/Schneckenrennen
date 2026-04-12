@@ -59,17 +59,26 @@ public class Rennen {
     /**
      * Entfernt eine Rennschnecke aus der Teilnehmerliste.
      *
-     * <p><b>TODO:</b> Diese Methode ist noch nicht vollständig implementiert –
-     * die Schleife enthält keine Entfernen-Logik. Korrekte Implementierung:
-     * {@code teilnehmer.remove(schnecke)} oder Iterator-basiertes Entfernen
-     * (da während der Iteration modifiziert wird).</p>
+     * <p>{@link ArrayList#remove(Object)} sucht selbstständig nach dem Element
+     * und entfernt das <b>erste</b> Vorkommen. Dabei wird intern mit
+     * {@code equals} verglichen – für {@link Rennschnecke}-Objekte bedeutet
+     * das ohne eigene {@code equals}-Überschreibung einen Referenzvergleich,
+     * d. h. nur das <i>exakt gleiche</i> Objekt wird gefunden.</p>
+     *
+     * <p><b>Didaktischer Hinweis zum „während-der-Iteration-modifizieren"-Problem:</b>
+     * Man könnte versucht sein, die Liste mit einer {@code for-each}-Schleife zu
+     * durchlaufen und beim Treffer {@code teilnehmer.remove(...)} aufzurufen.
+     * Das führt zu einer {@link java.util.ConcurrentModificationException},
+     * weil der for-each-Iterator bemerkt, dass sich die Liste unter ihm
+     * verändert hat. Richtige Alternativen wären ein klassischer Index-Loop
+     * mit Abbruch nach dem Entfernen oder ein {@link java.util.Iterator#remove()}.
+     * Am einfachsten ist allerdings – wie hier gezeigt – der direkte
+     * Aufruf ohne eigene Schleife.</p>
      *
      * @param schnecke die abzumeldende Schnecke
+     * @return {@code true}, wenn eine Schnecke entfernt wurde, sonst {@code false}
      */
-    void removeRennschnecke(Rennschnecke schnecke) {
-        for (Rennschnecke schnegge : teilnehmer) {
-            // TODO: Entfernen-Logik implementieren, z. B.:
-            // if (schnegge == schnecke) { teilnehmer.remove(schnecke); break; }
-        }
+    boolean removeRennschnecke(Rennschnecke schnecke) {
+        return teilnehmer.remove(schnecke);
     }
 }
